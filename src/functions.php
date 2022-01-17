@@ -12,6 +12,9 @@ const MAX_AGE = 45;
 const ERR_FILE_OPEN = 'Невозможно открыть файл';
 const ERR_FILE_WRITE = 'Файл недоступен для записи';
 
+/**
+ * Создает 50 пользователей
+ */
 function generateUsers(): array
 {
     $result = [];
@@ -25,6 +28,9 @@ function generateUsers(): array
     return $result;
 }
 
+/**
+ * Преобразует пользователей в формат json и сохраняет в файл users.json
+ */
 function saveUsers($users): bool
 {
     $users = json_encode($users);
@@ -42,6 +48,9 @@ function saveUsers($users): bool
     return true;
 }
 
+/**
+ * Берет пользователей из файла json и возвращает в виде массива или объекта
+ */
 function getUsers($associative = false)
 {
     $users = file_get_contents('users.json');
@@ -52,6 +61,9 @@ function getUsers($associative = false)
     return json_decode($users, $associative);
 }
 
+/**
+ * Считает количество имен и возвращает массив в виде пар "имя => количество"
+ */
 function countNames($users)
 {
     $result = [];
@@ -61,6 +73,9 @@ function countNames($users)
     return $result;
 }
 
+/**
+ * Считает средний возраст пользователей
+ */
 function countAverageAge($users)
 {
     $result = 0;
@@ -70,6 +85,9 @@ function countAverageAge($users)
     return round($result / count($users));
 }
 
+/**
+ * Выводит дамп переменной в удобном виде 
+ */
 function dump($var)
 {
     echo '<pre>';
