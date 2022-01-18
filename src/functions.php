@@ -34,17 +34,11 @@ function generateUsers(): array
 function saveUsers($users): bool
 {
     $users = json_encode($users);
-    $file = fopen('users.json', 'w');
+    $file = file_put_contents('users.json', $users);
     if (!$file) {
         echo ERR_FILE_OPEN;
         return false;
     }
-    if (!is_writable('users.json')) {
-        echo ERR_FILE_WRITE;
-        return false;
-    }
-    fwrite($file, $users);
-    fclose($file);
     return true;
 }
 
